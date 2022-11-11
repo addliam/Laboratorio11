@@ -12,6 +12,17 @@ public class Empleado {
     private double horasExtras;
     private String tipoSeguro;
 
+    public Empleado(){}
+    
+    public Empleado(String codigo, String nombre, String area, double sueldoBase, double horasExtras, String tipoSeguro) {
+        this.codigo = codigo;
+        this.nombre = nombre;
+        this.area = area;
+        this.sueldoBase = sueldoBase;
+        this.horasExtras = horasExtras;
+        this.tipoSeguro = tipoSeguro;
+    }
+    
     public String getCodigo() {
         return codigo;
     }

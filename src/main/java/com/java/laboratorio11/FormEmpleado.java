@@ -5,6 +5,9 @@
 package com.java.laboratorio11;
 
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -15,6 +18,9 @@ public class FormEmpleado extends javax.swing.JFrame {
 
     
     DefaultTableModel modeloTabla;
+    // no puedo declarar un array sin especificar tamano
+    List<Empleado> arrayEmpleado = new ArrayList<>();
+//    public Empleado[] ArrayEmpleado = new Empleado[4];
     int indexEmpleado = 0;
     /**
      * Creates new form FormEmpleado
@@ -22,7 +28,7 @@ public class FormEmpleado extends javax.swing.JFrame {
     public FormEmpleado() {
         initComponents();
         setupTablaEmpleados();
-        testInsertarDatos();
+//        testInsertarDatos();
     }
     
     private void setupTablaEmpleados(){
@@ -35,20 +41,16 @@ public class FormEmpleado extends javax.swing.JFrame {
     private void testInsertarDatos(){
 //        Object[] filaNueva = { "001","40823","Juan Perez","Sistemas","AFP",1400,3000,40,100,200,2800 };
 //        modeloTabla.addRow(filaNueva);
-        DecimalFormat df2 = new DecimalFormat("####.00");
         Empleado emp = new Empleado();
         emp.setArea("Sistem");
         emp.setCodigo("000");
         emp.setHorasExtras(20);
         emp.setNombre("Pepito");
         emp.setSueldoBase(2000);
-        emp.setTipoSeguro("AFP");
-        String montoHorasExtras = df2.format(emp.montoHorasExtras());
-        String montoSeguro = df2.format(emp.montoSeguro());
-        String montoEssalud = df2.format(emp.montoEssalud());
-        String sueldoNeto = df2.format(emp.sueldoNeto());        
-        Object[] filaDatosEmpleado = { "0", emp.getCodigo(), emp.getNombre(),emp.getArea(), emp.getTipoSeguro(), emp.getHorasExtras(), emp.getSueldoBase(), montoHorasExtras, montoSeguro, montoEssalud, sueldoNeto };
-        modeloTabla.addRow(filaDatosEmpleado);        
+        emp.setTipoSeguro("AFP");    
+        insertarEmpleadoEnTabla(emp);
+//        Object[] filaDatosEmpleado = { "0", emp.getCodigo(), emp.getNombre(),emp.getArea(), emp.getTipoSeguro(), emp.getHorasExtras(), emp.getSueldoBase(), montoHorasExtras, montoSeguro, montoEssalud, sueldoNeto };
+//        modeloTabla.addRow(filaDatosEmpleado);        
     }
     
     public void insertarEmpleadoEnTabla(Empleado empleado){
@@ -58,6 +60,7 @@ public class FormEmpleado extends javax.swing.JFrame {
         String montoEssalud = df2.format(empleado.montoEssalud());
         String sueldoNeto = df2.format(empleado.sueldoNeto());
         int numEmpleado = indexEmpleado + 1;
+        System.out.println("NUM EMPLEADO: "+numEmpleado);
         Object[] filaDatosEmpleado = { numEmpleado, empleado.getCodigo(), empleado.getNombre(), empleado.getArea(), empleado.getTipoSeguro(), empleado.getHorasExtras(), empleado.getSueldoBase(), montoHorasExtras, montoSeguro, montoEssalud, sueldoNeto };
         modeloTabla.addRow(filaDatosEmpleado);
     }
@@ -73,22 +76,22 @@ public class FormEmpleado extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        FieldCodigo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
+        FieldSueldoBase = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        FieldNombres = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        FieldHorasExtras = new javax.swing.JTextField();
+        ComboBoxTipoSeguro = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        ComboBoxArea = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
         BotonesContainer = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jButtonAgregar = new javax.swing.JButton();
+        jButtonLimpiar = new javax.swing.JButton();
+        jButtonMostrarResumen = new javax.swing.JButton();
+        jButtonSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaEmpleados = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
@@ -120,57 +123,57 @@ public class FormEmpleado extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Codigo");
 
-        jTextField1.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField1.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField1.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
-        jTextField1.setCaretColor(new java.awt.Color(102, 102, 102));
-        jTextField1.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        FieldCodigo.setBackground(new java.awt.Color(204, 204, 204));
+        FieldCodigo.setForeground(new java.awt.Color(102, 102, 102));
+        FieldCodigo.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
+        FieldCodigo.setCaretColor(new java.awt.Color(102, 102, 102));
+        FieldCodigo.setDisabledTextColor(new java.awt.Color(153, 153, 153));
 
         jLabel2.setBackground(new java.awt.Color(51, 51, 51));
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel2.setText("Suedo base");
+        jLabel2.setText("Sueldo base");
 
-        jTextField2.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField2.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField2.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
-        jTextField2.setCaretColor(new java.awt.Color(102, 102, 102));
-        jTextField2.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        FieldSueldoBase.setBackground(new java.awt.Color(204, 204, 204));
+        FieldSueldoBase.setForeground(new java.awt.Color(102, 102, 102));
+        FieldSueldoBase.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
+        FieldSueldoBase.setCaretColor(new java.awt.Color(102, 102, 102));
+        FieldSueldoBase.setDisabledTextColor(new java.awt.Color(153, 153, 153));
 
         jLabel3.setBackground(new java.awt.Color(51, 51, 51));
         jLabel3.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Nombres");
 
-        jTextField3.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField3.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField3.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
-        jTextField3.setCaretColor(new java.awt.Color(102, 102, 102));
-        jTextField3.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        FieldNombres.setBackground(new java.awt.Color(204, 204, 204));
+        FieldNombres.setForeground(new java.awt.Color(102, 102, 102));
+        FieldNombres.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
+        FieldNombres.setCaretColor(new java.awt.Color(102, 102, 102));
+        FieldNombres.setDisabledTextColor(new java.awt.Color(153, 153, 153));
 
         jLabel4.setBackground(new java.awt.Color(51, 51, 51));
         jLabel4.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Horas Extras");
 
-        jTextField4.setBackground(new java.awt.Color(204, 204, 204));
-        jTextField4.setForeground(new java.awt.Color(102, 102, 102));
-        jTextField4.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
-        jTextField4.setCaretColor(new java.awt.Color(102, 102, 102));
-        jTextField4.setDisabledTextColor(new java.awt.Color(153, 153, 153));
+        FieldHorasExtras.setBackground(new java.awt.Color(204, 204, 204));
+        FieldHorasExtras.setForeground(new java.awt.Color(102, 102, 102));
+        FieldHorasExtras.setBorder(javax.swing.BorderFactory.createEmptyBorder(2, 8, 2, 8));
+        FieldHorasExtras.setCaretColor(new java.awt.Color(102, 102, 102));
+        FieldHorasExtras.setDisabledTextColor(new java.awt.Color(153, 153, 153));
 
-        jComboBox1.setBackground(new java.awt.Color(204, 204, 204));
-        jComboBox1.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AFP", "SNP" }));
+        ComboBoxTipoSeguro.setBackground(new java.awt.Color(204, 204, 204));
+        ComboBoxTipoSeguro.setForeground(new java.awt.Color(102, 102, 102));
+        ComboBoxTipoSeguro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AFP", "SNP" }));
 
         jLabel5.setBackground(new java.awt.Color(51, 51, 51));
         jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Tipo de seguro");
 
-        jComboBox2.setBackground(new java.awt.Color(204, 204, 204));
-        jComboBox2.setForeground(new java.awt.Color(102, 102, 102));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas", "Administracion", "Marketing" }));
+        ComboBoxArea.setBackground(new java.awt.Color(204, 204, 204));
+        ComboBoxArea.setForeground(new java.awt.Color(102, 102, 102));
+        ComboBoxArea.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sistemas", "Administracion", "Marketing" }));
 
         jLabel6.setBackground(new java.awt.Color(51, 51, 51));
         jLabel6.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -180,34 +183,39 @@ public class FormEmpleado extends javax.swing.JFrame {
         BotonesContainer.setBackground(new java.awt.Color(255, 255, 255));
         BotonesContainer.setLayout(new java.awt.GridLayout(2, 0, 10, 10));
 
-        jButton2.setBackground(new java.awt.Color(255, 51, 51));
-        jButton2.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Agregar");
-        BotonesContainer.add(jButton2);
-
-        jButton4.setBackground(new java.awt.Color(204, 255, 255));
-        jButton4.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(102, 102, 102));
-        jButton4.setText("Limpiar");
-        BotonesContainer.add(jButton4);
-
-        jButton1.setBackground(new java.awt.Color(0, 51, 255));
-        jButton1.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Mostrar resumen");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonAgregar.setBackground(new java.awt.Color(255, 51, 51));
+        jButtonAgregar.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jButtonAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonAgregar.setText("Agregar");
+        jButtonAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonAgregarActionPerformed(evt);
             }
         });
-        BotonesContainer.add(jButton1);
+        BotonesContainer.add(jButtonAgregar);
 
-        jButton3.setBackground(new java.awt.Color(204, 255, 255));
-        jButton3.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(102, 102, 102));
-        jButton3.setText("Salir");
-        BotonesContainer.add(jButton3);
+        jButtonLimpiar.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonLimpiar.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jButtonLimpiar.setForeground(new java.awt.Color(102, 102, 102));
+        jButtonLimpiar.setText("Limpiar");
+        BotonesContainer.add(jButtonLimpiar);
+
+        jButtonMostrarResumen.setBackground(new java.awt.Color(0, 51, 255));
+        jButtonMostrarResumen.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jButtonMostrarResumen.setForeground(new java.awt.Color(255, 255, 255));
+        jButtonMostrarResumen.setText("Mostrar resumen");
+        jButtonMostrarResumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonMostrarResumenActionPerformed(evt);
+            }
+        });
+        BotonesContainer.add(jButtonMostrarResumen);
+
+        jButtonSalir.setBackground(new java.awt.Color(204, 255, 255));
+        jButtonSalir.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
+        jButtonSalir.setForeground(new java.awt.Color(102, 102, 102));
+        jButtonSalir.setText("Salir");
+        BotonesContainer.add(jButtonSalir);
 
         TablaEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -342,28 +350,28 @@ public class FormEmpleado extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FieldNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(ComboBoxTipoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel2))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(FieldHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel6)
-                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(ComboBoxArea, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(BotonesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(107, 107, 107))
@@ -383,30 +391,30 @@ public class FormEmpleado extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(8, 8, 8)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(FieldCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addGap(8, 8, 8)
-                                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(FieldNombres, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(8, 8, 8)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(ComboBoxTipoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(12, 12, 12)
                                 .addComponent(jLabel2)
                                 .addGap(8, 8, 8)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(FieldSueldoBase, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel6)
                                 .addGap(8, 8, 8)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(ComboBoxArea, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(8, 8, 8)
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(FieldHorasExtras, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(BotonesContainer, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,9 +438,120 @@ public class FormEmpleado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void jButtonMostrarResumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonMostrarResumenActionPerformed
+        double mayorSueldoNeto = 0;
+        String nombreEmpMayorSueldoNeto="";
+        int numEmpleadosMontoHExtras500_800 = 0;
+        double sumSueldoNetoMarketing = 0;
+        double SNPMenorMontoDescuento = 999999;
+        String nombreEmpSNPMenorMontoDescuento = "";
+        int numeroEmpleadosMontoSeguroMayor100 = 0;
+        double gastoTotalEmpresa = 0;
+        
+        int len = arrayEmpleado.size();
+        for (int i=0; i<len; i++){
+            Empleado emp = arrayEmpleado.get(i);
+            if (emp.sueldoNeto() > mayorSueldoNeto){
+                mayorSueldoNeto = emp.sueldoNeto();
+                nombreEmpMayorSueldoNeto = emp.getNombre();
+            }
+            
+            if (emp.getArea().equalsIgnoreCase("Marketing")){
+                sumSueldoNetoMarketing += emp.sueldoNeto();
+            }
+            
+            if (emp.montoSeguro() > 100){
+                numeroEmpleadosMontoSeguroMayor100 += 1;
+            }
+            
+            if (500 <= emp.montoHorasExtras()&& emp.montoHorasExtras()<= 800){
+                numEmpleadosMontoHExtras500_800 += 1;
+            }
+            
+            if (emp.getTipoSeguro().equalsIgnoreCase("SNP")){
+                if (emp.montoSeguro() < SNPMenorMontoDescuento){
+                    SNPMenorMontoDescuento = emp.montoSeguro();
+                    nombreEmpSNPMenorMontoDescuento = emp.getNombre();
+                }
+            }
+            gastoTotalEmpresa += emp.sueldoNeto();
+        }
+        DecimalFormat df2 = new DecimalFormat("####.00");
+        // mostrar valores en pantalla
+        LabelMayorSueldo.setText(nombreEmpMayorSueldoNeto);
+        LabelMontoHorasExtrasEntre500y800.setText(String.valueOf(numEmpleadosMontoHExtras500_800));
+        double promSueldoNetoMarketing = sumSueldoNetoMarketing/len;
+        LabelPromedioSueldoNetoMarketing.setText(df2.format(promSueldoNetoMarketing));
+        LabelEmpleadoSNPMenorMontoDscto.setText(nombreEmpSNPMenorMontoDescuento);
+        LabelNumeroEmpleadosMontoSeguroMayor100.setText(String.valueOf(numeroEmpleadosMontoSeguroMayor100));
+        LabelGastoTotalEmpresaPagos.setText(df2.format(gastoTotalEmpresa));
+    }//GEN-LAST:event_jButtonMostrarResumenActionPerformed
+
+    private boolean containOnlyNumbers(String value){
+        boolean res = false;
+        try {
+            String[] chars = value.split("");
+            for (String c: chars){
+                int _n = Integer.parseInt(c);
+            }
+            res = true;
+        } catch (Exception e) {
+            
+        }
+        return res;
+    }
+
+    private boolean isFloat(String value){
+        boolean res = false;
+        try {
+            float _n = Float.parseFloat(value);
+            res = true;
+        } catch (Exception e) {
+        }
+        return true;
+    }    
+    
+    private String checkUserInput(String codigo,String nombres,String horasExtras,String sueldoBase){
+        if (!containOnlyNumbers(codigo)){
+            return "Codigo";
+        }
+        else if (nombres.length()>= 48){
+            return "Nombres";
+        }
+        else if (!isFloat(horasExtras)){
+            return "Horas extras";
+        }
+        else if (!isFloat(sueldoBase)){
+            return "Sueldo base";
+        }else{
+            return "";
+        }
+    }
+    
+    private void jButtonAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAgregarActionPerformed
+        Empleado newEmp = new Empleado();
+        String nCodigo = FieldCodigo.getText();
+        String nHorasExtras = FieldHorasExtras.getText();
+        String nNombres = FieldNombres.getText();
+        String nSueldoBase = FieldSueldoBase.getText();
+        String errorField = checkUserInput(nCodigo, nNombres, nHorasExtras, nSueldoBase);
+        if ("".equals(errorField)){
+            newEmp.setCodigo(nCodigo);
+            newEmp.setNombre(nNombres);            
+            newEmp.setHorasExtras(Double.parseDouble(nHorasExtras));
+            newEmp.setSueldoBase(Double.parseDouble(nSueldoBase));
+            newEmp.setArea(ComboBoxArea.getSelectedItem().toString());
+            newEmp.setTipoSeguro(ComboBoxTipoSeguro.getSelectedItem().toString());
+            // Agregar objeto al array de Empleados
+            arrayEmpleado.add(newEmp);
+            insertarEmpleadoEnTabla(newEmp);            
+            indexEmpleado++;            
+        }
+        else{
+            String message = "Ocurrio un error en el campo "+errorField;
+            JOptionPane.showMessageDialog(null, message);
+        }
+    }//GEN-LAST:event_jButtonAgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -471,6 +590,12 @@ public class FormEmpleado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel BotonesContainer;
+    private javax.swing.JComboBox<String> ComboBoxArea;
+    private javax.swing.JComboBox<String> ComboBoxTipoSeguro;
+    private javax.swing.JTextField FieldCodigo;
+    private javax.swing.JTextField FieldHorasExtras;
+    private javax.swing.JTextField FieldNombres;
+    private javax.swing.JTextField FieldSueldoBase;
     private javax.swing.JLabel LabelEmpleadoSNPMenorMontoDscto;
     private javax.swing.JLabel LabelGastoTotalEmpresaPagos;
     private javax.swing.JLabel LabelMayorSueldo;
@@ -478,12 +603,10 @@ public class FormEmpleado extends javax.swing.JFrame {
     private javax.swing.JLabel LabelNumeroEmpleadosMontoSeguroMayor100;
     private javax.swing.JLabel LabelPromedioSueldoNetoMarketing;
     private javax.swing.JTable TablaEmpleados;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JButton jButtonAgregar;
+    private javax.swing.JButton jButtonLimpiar;
+    private javax.swing.JButton jButtonMostrarResumen;
+    private javax.swing.JButton jButtonSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -500,9 +623,5 @@ public class FormEmpleado extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
     // End of variables declaration//GEN-END:variables
 }
