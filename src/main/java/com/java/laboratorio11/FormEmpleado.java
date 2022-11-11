@@ -4,6 +4,7 @@
  */
 package com.java.laboratorio11;
 
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -14,6 +15,7 @@ public class FormEmpleado extends javax.swing.JFrame {
 
     
     DefaultTableModel modeloTabla;
+    int indexEmpleado = 0;
     /**
      * Creates new form FormEmpleado
      */
@@ -31,8 +33,33 @@ public class FormEmpleado extends javax.swing.JFrame {
     }
 
     private void testInsertarDatos(){
-        Object[] filaNueva = { "001","40823","Juan Perez","Sistemas","AFP",1400,3000,40,100,200,2800 };
-        modeloTabla.addRow(filaNueva);
+//        Object[] filaNueva = { "001","40823","Juan Perez","Sistemas","AFP",1400,3000,40,100,200,2800 };
+//        modeloTabla.addRow(filaNueva);
+        DecimalFormat df2 = new DecimalFormat("####.00");
+        Empleado emp = new Empleado();
+        emp.setArea("Sistem");
+        emp.setCodigo("000");
+        emp.setHorasExtras(20);
+        emp.setNombre("Pepito");
+        emp.setSueldoBase(2000);
+        emp.setTipoSeguro("AFP");
+        String montoHorasExtras = df2.format(emp.montoHorasExtras());
+        String montoSeguro = df2.format(emp.montoSeguro());
+        String montoEssalud = df2.format(emp.montoEssalud());
+        String sueldoNeto = df2.format(emp.sueldoNeto());        
+        Object[] filaDatosEmpleado = { "0", emp.getCodigo(), emp.getNombre(),emp.getArea(), emp.getTipoSeguro(), emp.getHorasExtras(), emp.getSueldoBase(), montoHorasExtras, montoSeguro, montoEssalud, sueldoNeto };
+        modeloTabla.addRow(filaDatosEmpleado);        
+    }
+    
+    public void insertarEmpleadoEnTabla(Empleado empleado){
+        DecimalFormat df2 = new DecimalFormat("####.00");
+        String montoHorasExtras = df2.format(empleado.montoHorasExtras());
+        String montoSeguro = df2.format(empleado.montoSeguro());
+        String montoEssalud = df2.format(empleado.montoEssalud());
+        String sueldoNeto = df2.format(empleado.sueldoNeto());
+        int numEmpleado = indexEmpleado + 1;
+        Object[] filaDatosEmpleado = { numEmpleado, empleado.getCodigo(), empleado.getNombre(), empleado.getArea(), empleado.getTipoSeguro(), empleado.getHorasExtras(), empleado.getSueldoBase(), montoHorasExtras, montoSeguro, montoEssalud, sueldoNeto };
+        modeloTabla.addRow(filaDatosEmpleado);
     }
     
     /**
@@ -82,11 +109,10 @@ public class FormEmpleado extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1200, 720));
         setMinimumSize(new java.awt.Dimension(1200, 720));
-        setPreferredSize(new java.awt.Dimension(1200, 720));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 700));
-        jPanel1.setMinimumSize(new java.awt.Dimension(1200, 700));
+        jPanel1.setMaximumSize(new java.awt.Dimension(1200, 720));
+        jPanel1.setMinimumSize(new java.awt.Dimension(1200, 720));
         jPanel1.setPreferredSize(new java.awt.Dimension(1200, 700));
 
         jLabel1.setBackground(new java.awt.Color(51, 51, 51));
